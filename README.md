@@ -418,24 +418,6 @@ In case on an exception the backend will return in the payload of the response t
 
 The following format was obtained by specifying a **custom exception handler** in the **rest_framework** object from **settings.py.** The handler is responsible for formatting the data and converting a **django.core.exception** into a **rest_framework.exception**.
 
-```
- {
-        "errors": [
-            {
-                "message": "Error message",
-                "code": "code",
-                "field": "field_name"
-            },
-            {
-                "message": "Error message",
-                "code": "code",
-                "field": "field_name"
-            },
-            ...
-        ]
-    }
-```
-
 The files related to the handler are accessible on this link.  (The link might not be provided yet).
 
 ### **Testing**
@@ -449,16 +431,14 @@ The tests directory for each app has the following structure:
 *   **app_name/tests/serializers**, 
 *   **app_name/tests/managers**. 
 
-Usually on the projects **factory-boy** is used for mocking the database. All the factory instances of an application should be placed inside of a **factories.py** file from the **tests** directory. 
+**Factory-boy** is used usually for mocking the database and all the factory instances of an application should be placed inside of a **factories.py** file from the **tests** directory. 
 
 
 ### **Migration**
 
-Limit the number of new migrations to 1 per application in a Merge Request.
+Limit the number of new migrations to 1 migration per application in a Merge Request.
 
-Create custom migrations in order to modify or not lose existing records.
-
-Example of a custom migration that is updating existing records in order to not have a null value on a field that was newly added.
+Make use of custom migrations in order to modify or not lose existing records. Check the example of a custom migration that is updating existing records in order to not have a null value on a field that was newly added.
 
 
 ```
@@ -494,6 +474,7 @@ class Migration(migrations.Migration):
 For us every application has a fixture directory with two files: **initial_data.yaml** and **test_data.yaml.**
 
 **initial_data.yaml** would store sensitive records that are required to populate an empty database. 
+
 **test_data.yaml** would store data that is required to test features of that particular application.
 
 ### **Translations**
